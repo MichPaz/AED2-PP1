@@ -105,7 +105,7 @@ VertexBFS* bfs(Graph &graph, int s)
 }
 
 
-int main()
+/*int main()
 {
     Graph g(8);
     g.insertEdge(1,2);
@@ -124,4 +124,4 @@ int main()
     bfs(g, 2);
     g.print();
     return 0;
-}
+}*/
