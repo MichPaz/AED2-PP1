@@ -86,7 +86,7 @@ void quickSort(std::vector<int>& A, int p, int r)
 
 
 //Main===================================================================================
-int main(int argc, const char* argv[])
+/*int main(int argc, const char* argv[])
 {
 	int n,m;
 
@@ -98,7 +98,7 @@ int main(int argc, const char* argv[])
 	testaGrafo(g);
 
 	return 0;
-}
+}*/
 
 
 

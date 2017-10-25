@@ -62,37 +62,58 @@ int VertexBFS::getCor()
 
 
 //BFS------------------------------------------------------------
-void bfs(Graph &graph, int s)
+VertexBFS* bfs(Graph &graph, int s)
 {
-    cout<<graph.getN();
+
     VertexBFS u[graph.getN()];
-    Graph gr(64);
-    cout << gr.getN();
+    Graph gr(graph.getN());
+
     for(int i = 0; i < graph.getN(); i++){
         u[i].setCor(0);
         u[i].setD(0);
         u[i].setP(-1);
     }
+
     u[s].setCor(1);
     u[s].setD(0);
     u[s].setP(-1);
+
+    for(int i = 0; i<graph.getN(); i++){
+        cout << "vertice[" << i+1 << "] cor - " << u[i].getCor() << ", d - " << u[i].getD() << ", p - " << u[i].getP() << endl;
+    }
+
     Fila<int> q;
     q.enfileira(s);
+    cout << "cor do 8 = " << u[8].getCor()<<endl;
+
     while(!q.vazia()){
         int j = q.desenfileira();
-        for(int i; i<graph.getAdj()[j].size(); i++){
-            if(u[graph.getAdj()[j].get(i)].getCor()==0){
-                u[graph.getAdj()[j].get(i)].setCor(1);
-                u[graph.getAdj()[j].get(i)].setD(u[graph.getAdj()[j].get(i)].getD()+1);
-                u[graph.getAdj()[j].get(i)].setP(j);
-                gr.insertEdge(j,i);
-                gr.insertEdge(i,j);
-                q.enfileira(graph.getAdj()[j].get(i));
+        cout<<"\nsaiu da fila o "<<j<<endl;
+        //cout << "variacao do i = " << graph.getAdj()[j].size() << endl;
+        for(int i = 0; i<graph.getAdj()[j].size(); i++){
+            cout << "cor do 8 = " << u[8].getCor()<<endl;
+            cout<<"\nolhando o vertice "<<graph.getAdj()[j].at(i) ;
+            cout<<" "<< u[graph.getAdj()[j].at(i)].getCor() << "=" << 0;
+            if(u[graph.getAdj()[j].at(i)].getCor()==0){
+                cout<<"\nVisitando o vertice "<<graph.getAdj()[j].at(i) ;
+                u[graph.getAdj()[j].at(i)].setCor(1);
+                u[graph.getAdj()[j].at(i)].setD(u[j].getD()+1);
+                u[graph.getAdj()[j].at(i)].setP(j);
+
+                cout<<"\n inserindo vertice: "<<j<<","<<graph.getAdj()[j].at(i)<<endl;
+                gr.insertEdge(j,graph.getAdj()[j].at(i));
+                cout<<"\nenfileira "<< graph.getAdj()[j].at(i);
+                q.enfileira(graph.getAdj()[j].at(i));
             }
         u[j].setCor(2);
         }
     }
     graph = gr;
+
+    for(int i = 0; i<graph.getN(); i++){
+        cout << "vertice[" << i+1 << "] cor - " << u[i].getCor() << ", d - " << u[i].getD() << ", p - " << u[i].getP() << endl;
+    }
+
     return u;
 }
 
@@ -102,29 +123,18 @@ int main()
     Graph g(8);
     g.insertEdge(1,2);
     g.insertEdge(1,5);
-    g.insertEdge(2,1);
     g.insertEdge(2,6);
     g.insertEdge(3,6);
     g.insertEdge(3,7);
     g.insertEdge(3,4);
-    g.insertEdge(4,3);
     g.insertEdge(4,7);
     g.insertEdge(4,8);
-    g.insertEdge(5,1);
-    g.insertEdge(6,2);
-    g.insertEdge(6,3);
     g.insertEdge(6,7);
-    g.insertEdge(7,6);
-    g.insertEdge(7,3);
-    g.insertEdge(7,4);
     g.insertEdge(7,8);
-    g.insertEdge(8,4);
-    g.insertEdge(8,7);
-
-    Graph gg(5);
-    cout<<gg.getN();
-
-    //bfs(g, 2);
+    cout << "Grafo" << endl;
+    g.print();
+    cout << "\n\nGrafo-BFS" << endl;
+    bfs(g, 2);
     g.print();
     return 0;
 }
