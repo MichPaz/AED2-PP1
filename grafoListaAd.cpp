@@ -10,14 +10,15 @@ class Graph
 	private:
 		vector<Vertex>*  adj;
 		int n, m;
+		void destroy();
 
 	public:
-		void destroy();
 		Graph(int);
 		void initialize(int);
 		void insertEdge(Vertex,Vertex);
 		void print();
 
+		int getN();
 		vector<Vertex>* getAdj();
 };
 
@@ -70,6 +71,11 @@ vector<Vertex>* Graph::getAdj()
 	return adj;
 }
 
+int Graph::getN()
+{
+	return n;
+}
+
 void Graph::destroy()
 {
 	for (int i = 0; i <= n; i++)
@@ -87,8 +93,6 @@ int main(int argc, const char* argv[])
 	Graph g(n);
 
 	testaGrafo(g);
-
-	g.print();
 
 	return 0;
 }
