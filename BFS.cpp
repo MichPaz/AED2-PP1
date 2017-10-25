@@ -22,7 +22,6 @@ public:
     int getD();
     int getP();
     int getCor();
-
 };
 
 VertexBFS::VertexBFS()

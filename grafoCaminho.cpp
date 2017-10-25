@@ -82,17 +82,23 @@ Graph geraCaminhos(int posInicial){
                 if(cont==0){
                     graph.insertEdge(u, movL(u).at(i));
                     visited[movL(u).at(i)]++;
-                    cout<<"enfileira " << movL(u).at(i)<<endl;
+                    //cout<<"enfileira " << movL(u).at(i)<<endl;
                     q.enfileira(movL(u).at(i));
                 }
             }
         }
     }
-    graph.print();
     return graph;
 }
 
 int main(){
-    geraCaminhos(1);
+
+    //Exemplo do cavaleiro na casa 1 e o rei na casa 2
+    Graph g = geraCaminhos(1);
+    g.print();
+    VertexBFS* grafoBFS = bfs(g,2);
+    g.print();
+
+
     return 0;
 }
