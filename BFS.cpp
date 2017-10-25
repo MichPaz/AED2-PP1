@@ -61,10 +61,10 @@ int VertexBFS::getCor()
 
 
 //BFS------------------------------------------------------------
-VertexBFS* bfs(Graph &graph, int s)
+vector<VertexBFS> bfs(Graph &graph, int s)
 {
 
-    VertexBFS u[graph.getN()+1];
+    vector<VertexBFS> u(graph.getN()+1);
     Graph gr(graph.getN());
 
     for(int i = 1; i <= graph.getN(); i++){
@@ -95,11 +95,6 @@ VertexBFS* bfs(Graph &graph, int s)
         }
     }
     graph = gr;
-
-    for(int i = 1; i<=graph.getN(); i++){
-        cout << "vertice[" << i << "] cor - " << u[i].getCor() << ", d - " << u[i].getD() << ", p - " << u[i].getP() << endl;
-    }
-
     return u;
 }
 
@@ -123,4 +118,5 @@ VertexBFS* bfs(Graph &graph, int s)
     bfs(g, 2);
     g.print();
     return 0;
-}*/
+}
+*/

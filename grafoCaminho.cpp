@@ -45,18 +45,6 @@ vector<int> movL(int p)
         pos.push_back(tabuleiro[x-1][y+2]);
     if(inRange(x-1,y-2))
         pos.push_back(tabuleiro[x-1][y-2]);
-
-    /*for(int i=0;i<8;i++){
-        cout << "\n";
-        for(int j=0;j<8;j++){
-                cout << "   " << tabuleiro[i][j] << "   ";
-        }
-    }*/
-    /*cout << "\n\n";
-    for(int i=0;i<pos.size();i++){
-        cout << pos.at(i) <<endl;
-    }*/
-
     return pos;
 
 }
@@ -66,7 +54,6 @@ Graph geraCaminhos(int posInicial){
     for(int i=1;i<=64;i++){
         visited[i]=0;
     }
-    //visited[posInicial]=true;
     Graph graph(64);
     Fila<int> q;
     q.enfileira(posInicial);
@@ -82,7 +69,6 @@ Graph geraCaminhos(int posInicial){
                 if(cont==0){
                     graph.insertEdge(u, movL(u).at(i));
                     visited[movL(u).at(i)]++;
-                    //cout<<"enfileira " << movL(u).at(i)<<endl;
                     q.enfileira(movL(u).at(i));
                 }
             }
@@ -91,14 +77,36 @@ Graph geraCaminhos(int posInicial){
     return graph;
 }
 
+
+vector<int> caminho(int rei, int cavaleiro)
+{
+    Graph g = geraCaminhos(cavaleiro);
+    vector<VertexBFS> grafoBFS;
+    grafoBFS = bfs(g,rei);
+    vector<int> cam;
+    cam.push_back(grafoBFS[cavaleiro].getD());
+    int posca = cavaleiro;
+    cam.push_back(cavaleiro);
+    for(int i = 0; i<grafoBFS[cavaleiro].getD();i++){
+        for(int j = 0; j < g.getAdj()[posca].size();j++){
+            if(grafoBFS[g.getAdj()[posca].at(j)].getD()<grafoBFS[posca].getD()){
+                posca = g.getAdj()[posca].at(j);
+                cam.push_back(posca);
+            }
+        }
+    }
+    return cam;
+}
+
 int main(){
 
     //Exemplo do cavaleiro na casa 1 e o rei na casa 2
-    Graph g = geraCaminhos(1);
-    g.print();
-    VertexBFS* grafoBFS = bfs(g,2);
-    g.print();
-
+    vector<int> c;
+    c = caminho(2,1);
+    cout << "caminho :";
+    for(int i = 0; i< c.size() -1; i++){
+        cout << c[i] << " ";
+    }
 
     return 0;
 }
