@@ -19,8 +19,8 @@ vector<int> movCavaleiro(int p)
         for(int j=0;j<8;j++){
                 tabuleiro[j][i]=cont;
                 if(p == cont){
-                    x=i;
-                    y=j;
+                    x=j;
+                    y=i;
                 }
                 cont++;
         }
@@ -44,7 +44,7 @@ vector<int> movCavaleiro(int p)
     if(inRange(x-1,y+2))
         pos.push_back(tabuleiro[x-1][y+2]);
     if(inRange(x-1,y-2))
-        pos.push_back(tabuleiro[x-1][y+2]);
+        pos.push_back(tabuleiro[x-1][y-2]);
 
     for(int i=0;i<8;i++){
         cout << "\n";
@@ -53,7 +53,7 @@ vector<int> movCavaleiro(int p)
         }
     }
     cout << "\n\n";
-    for(int i=0;i<8;i++){
+    for(int i=0;i<pos.size();i++){
         cout << pos.at(i) <<endl;
     }
 
@@ -66,6 +66,6 @@ vector<int> movCavaleiro(int p)
 }*/
 
 int main(){
-    movCavaleiro(1);
+    movCavaleiro(59);
     return 0;
 }
