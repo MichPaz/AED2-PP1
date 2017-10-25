@@ -8,22 +8,16 @@ using namespace std;
 class Graph
 {
 	private:
-		vector<Vertex> *adj;
+		vector<Vertex>*  adj;
 		int n, m;
 
-	//	void destroy();
 	public:
+		void destroy();
 		Graph(int);
 		void initialize(int);
 		void insertEdge(Vertex,Vertex);
 		void print();
 
-		void setN(int);
-		void setM(int);
-		void setAdj(vector<Vertex>*);
-
-		int getN();
-		int setM();
 		vector<Vertex>* getAdj();
 };
 
@@ -71,16 +65,17 @@ void Graph::print()
 	}
 }
 
-/*void Graph::destroy()
+vector<Vertex>* Graph::getAdj()
 {
-	for(int i = 0; i <= n; i++){
-		adj[i].destroy();
-	}
-	delete adj;
-	n = m = 0;
+	return adj;
 }
-*/
 
+void Graph::destroy()
+{
+	for (int i = 0; i <= n; i++)
+		adj[i].clear();
+	delete adj;
+}
 
 int main(int argc, const char* argv[])
 {
@@ -92,6 +87,8 @@ int main(int argc, const char* argv[])
 	Graph g(n);
 
 	testaGrafo(g);
+
+	g.print();
 
 	return 0;
 }
