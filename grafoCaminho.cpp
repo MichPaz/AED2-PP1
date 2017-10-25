@@ -62,8 +62,8 @@ vector<int> movL(int p)
 }
 
 Graph geraCaminhos(int posInicial){
-    int visited[64];
-    for(int i=0;i<64;i++){
+    int visited[65];
+    for(int i=1;i<=64;i++){
         visited[i]=0;
     }
     //visited[posInicial]=true;
