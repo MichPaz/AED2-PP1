@@ -74,10 +74,17 @@ Graph geraCaminhos(int posInicial){
         int u = q.desenfileira();
         for(int i = 0; i < movL(u).size();i++){
             if(visited[movL(u).at(i)]<movL(movL(u).at(i)).size()){
-                graph.insertEdge(u, movL(u).at(i));
-                visited[movL(u).at(i)]++;
-                cout<<"enfileira " << movL(u).at(i)<<endl;
-                q.enfileira(movL(u).at(i));
+                int cont = 0;
+                for(int k=0;k<graph.getAdj()[u].size();k++){
+                    if(movL(u).at(i)==graph.getAdj()[u].at(k))
+                        cont++;
+                }
+                if(cont==0){
+                    graph.insertEdge(u, movL(u).at(i));
+                    visited[movL(u).at(i)]++;
+                    cout<<"enfileira " << movL(u).at(i)<<endl;
+                    q.enfileira(movL(u).at(i));
+                }
             }
         }
     }
