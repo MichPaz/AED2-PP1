@@ -65,10 +65,10 @@ int VertexBFS::getCor()
 VertexBFS* bfs(Graph &graph, int s)
 {
 
-    VertexBFS u[graph.getN()];
+    VertexBFS u[graph.getN()+1];
     Graph gr(graph.getN());
 
-    for(int i = 0; i < graph.getN(); i++){
+    for(int i = 1; i <= graph.getN(); i++){
         u[i].setCor(0);
         u[i].setD(0);
         u[i].setP(-1);
@@ -78,31 +78,18 @@ VertexBFS* bfs(Graph &graph, int s)
     u[s].setD(0);
     u[s].setP(-1);
 
-    for(int i = 0; i<graph.getN(); i++){
-        cout << "vertice[" << i+1 << "] cor - " << u[i].getCor() << ", d - " << u[i].getD() << ", p - " << u[i].getP() << endl;
-    }
 
     Fila<int> q;
     q.enfileira(s);
-    cout << "cor do 8 = " << u[8].getCor()<<endl;
 
     while(!q.vazia()){
         int j = q.desenfileira();
-        cout<<"\nsaiu da fila o "<<j<<endl;
-        //cout << "variacao do i = " << graph.getAdj()[j].size() << endl;
         for(int i = 0; i<graph.getAdj()[j].size(); i++){
-            cout << "cor do 8 = " << u[8].getCor()<<endl;
-            cout<<"\nolhando o vertice "<<graph.getAdj()[j].at(i) ;
-            cout<<" "<< u[graph.getAdj()[j].at(i)].getCor() << "=" << 0;
             if(u[graph.getAdj()[j].at(i)].getCor()==0){
-                cout<<"\nVisitando o vertice "<<graph.getAdj()[j].at(i) ;
                 u[graph.getAdj()[j].at(i)].setCor(1);
                 u[graph.getAdj()[j].at(i)].setD(u[j].getD()+1);
                 u[graph.getAdj()[j].at(i)].setP(j);
-
-                cout<<"\n inserindo vertice: "<<j<<","<<graph.getAdj()[j].at(i)<<endl;
                 gr.insertEdge(j,graph.getAdj()[j].at(i));
-                cout<<"\nenfileira "<< graph.getAdj()[j].at(i);
                 q.enfileira(graph.getAdj()[j].at(i));
             }
         u[j].setCor(2);
@@ -110,8 +97,8 @@ VertexBFS* bfs(Graph &graph, int s)
     }
     graph = gr;
 
-    for(int i = 0; i<graph.getN(); i++){
-        cout << "vertice[" << i+1 << "] cor - " << u[i].getCor() << ", d - " << u[i].getD() << ", p - " << u[i].getP() << endl;
+    for(int i = 1; i<=graph.getN(); i++){
+        cout << "vertice[" << i << "] cor - " << u[i].getCor() << ", d - " << u[i].getD() << ", p - " << u[i].getP() << endl;
     }
 
     return u;
