@@ -1,5 +1,5 @@
 #include <iostream>
-#include "LSE.cpp"
+#include <vector>
 
 typedef int Vertex;
 
@@ -8,10 +8,10 @@ using namespace std;
 class Graph
 {
 	private:
-		list<Vertex> *adj;
+		vector<Vertex> *adj;
 		int n, m;
 
-		void destroy();
+	//	void destroy();
 	public:
 		Graph(int);
 		void initialize(int);
@@ -20,11 +20,11 @@ class Graph
 
 		void setN(int);
 		void setM(int);
-		void setAdj(list<Vertex>*);
+		void setAdj(vector<Vertex>*);
 
 		int getN();
 		int setM();
-		list<Vertex>* getAdj();
+		vector<Vertex>* getAdj();
 };
 
 void testaGrafo(Graph &g)
@@ -47,15 +47,15 @@ Graph::Graph(int n)
 void Graph::initialize(int n)
 {
 	this->n = n;
-	adj = new list<Vertex>[n+1];
+	adj = new vector<Vertex>[n+1];
 }
 
 void Graph::insertEdge(Vertex u, Vertex v)
 {
-	Vertex x = {v};
-	adj[u].insert(x);
-	x = {u};
-	adj[v].insert(x);
+	Vertex x = v;
+	adj[u].push_back(x);
+	x = u;
+	adj[v].push_back(x);
 	m++;
 }
 
@@ -65,11 +65,13 @@ void Graph::print()
         //cout << "qnt de vertice adj. = " << adj[i].size() <<endl;
         //cout << "get - " << adj[i].get(1) << endl;
 		cout <<"v["<<i<<"] = ";
-		adj[i].show();
+		for(int j = 0; j < adj[i].size();j++)
+			cout << adj[i][j] << " ";
+		cout << endl;
 	}
 }
 
-void Graph::destroy()
+/*void Graph::destroy()
 {
 	for(int i = 0; i <= n; i++){
 		adj[i].destroy();
@@ -77,7 +79,7 @@ void Graph::destroy()
 	delete adj;
 	n = m = 0;
 }
-
+*/
 
 
 int main(int argc, const char* argv[])
