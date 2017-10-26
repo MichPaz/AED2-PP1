@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//Classe de no da Fila -----------------------------------------------
 template <class T>
 class NoFila
 {
@@ -49,7 +50,7 @@ NoFila<T>* NoFila<T>::getProx()
 
 
 
-//---------------------------------------------
+//Classe Fila ------------------------------------------------------------
 template <class T>
 class Fila
 {
@@ -64,6 +65,7 @@ public:
     void print();
 };
 
+//Funcoes da classe Fila -------------------------------------------------
 template <class T>
 Fila<T>::Fila()
 {
@@ -113,20 +115,3 @@ void Fila<T>::print()
         }
     }
 }
-
-/*int main(){
-    Fila<int> fila;
-    fila.print();
-    fila.enfileira(3);
-    fila.enfileira(6);
-    fila.enfileira(4);
-    fila.enfileira(1);
-
-    cout << fila.desenfileira()<<endl;
-    cout << fila.desenfileira()<<endl;
-
-    fila.print();
-
-
-    return 0;
-}*/

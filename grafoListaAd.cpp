@@ -84,25 +84,6 @@ void quickSort(std::vector<int>& A, int p, int r)
 	}
 }
 
-
-//Main===================================================================================
-/*int main(int argc, const char* argv[])
-{
-	int n,m;
-
-	cout << "ordem: ";
-	cin >> n;
-
-	Graph g(n);
-
-	testaGrafo(g);
-
-	return 0;
-}*/
-
-
-
-
 //Funcoes da classe Graph=============================================================
 Graph::Graph(int n)
 {

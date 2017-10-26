@@ -3,11 +3,13 @@
 
 using namespace std;
 
+//Retorna se é possivel fazer a jogada em "L"
 bool inRange(int i, int j)
 {
     return ( (i>=0) &&(i<8) && (j >=0) && (j<8) );
 }
 
+//Retorna todos os movimentos em "L" possiveis a partir da posicao p
 vector<int> movL(int p)
 {
     vector <int> pos;
@@ -25,7 +27,7 @@ vector<int> movL(int p)
                 cont++;
         }
     }
-
+    //Movimentos em "L" possiveis
     if(!inRange(x,y))
         cout << "posicao invalida, erro na posicao do tabuleiro." ;
 
@@ -45,10 +47,12 @@ vector<int> movL(int p)
         pos.push_back(tabuleiro[x-1][y+2]);
     if(inRange(x-1,y-2))
         pos.push_back(tabuleiro[x-1][y-2]);
+
     return pos;
 
 }
 
+//Retorna um grafo que possui todas as jogadas possiveis no tabuleio a partir da posicao inicial
 Graph geraCaminhos(int posInicial){
     int visited[65];
     for(int i=1;i<=64;i++){
@@ -77,7 +81,7 @@ Graph geraCaminhos(int posInicial){
     return graph;
 }
 
-
+//retorna a distancia e os passos do cavaleiro ate chegar ao rei
 vector<int> caminho(int rei, int cavaleiro)
 {
     Graph g = geraCaminhos(cavaleiro);

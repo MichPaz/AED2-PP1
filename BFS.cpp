@@ -3,7 +3,7 @@
 #include "grafoListaAd.cpp"
 
 
-//Classe para BFS---------------------------------------------------------------------
+//Classe de vertice para BFS---------------------------------------------------------------------
 class VertexBFS
 {
 private:
@@ -63,7 +63,6 @@ int VertexBFS::getCor()
 //BFS------------------------------------------------------------
 vector<VertexBFS> bfs(Graph &graph, int s)
 {
-
     vector<VertexBFS> u(graph.getN()+1);
     Graph gr(graph.getN());
 
@@ -77,17 +76,20 @@ vector<VertexBFS> bfs(Graph &graph, int s)
     u[s].setD(0);
     u[s].setP(-1);
 
-
     Fila<int> q;
     q.enfileira(s);
 
     while(!q.vazia()){
+
         int j = q.desenfileira();
+
         for(int i = 0; i<graph.getAdj()[j].size(); i++){
             if(u[graph.getAdj()[j].at(i)].getCor()==0){
+
                 u[graph.getAdj()[j].at(i)].setCor(1);
                 u[graph.getAdj()[j].at(i)].setD(u[j].getD()+1);
                 u[graph.getAdj()[j].at(i)].setP(j);
+
                 gr.insertEdge(j,graph.getAdj()[j].at(i));
                 q.enfileira(graph.getAdj()[j].at(i));
             }
@@ -97,26 +99,3 @@ vector<VertexBFS> bfs(Graph &graph, int s)
     graph = gr;
     return u;
 }
-
-
-/*int main()
-{
-    Graph g(8);
-    g.insertEdge(1,2);
-    g.insertEdge(1,5);
-    g.insertEdge(2,6);
-    g.insertEdge(3,6);
-    g.insertEdge(3,7);
-    g.insertEdge(3,4);
-    g.insertEdge(4,7);
-    g.insertEdge(4,8);
-    g.insertEdge(6,7);
-    g.insertEdge(7,8);
-    cout << "Grafo" << endl;
-    g.print();
-    cout << "\n\nGrafo-BFS" << endl;
-    bfs(g, 2);
-    g.print();
-    return 0;
-}
-*/
