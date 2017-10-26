@@ -1,9 +1,10 @@
 #include "BFS.cpp"
 #include <vector>
+#include "entradaSaida.cpp"
 
 using namespace std;
 
-//Retorna se é possivel fazer a jogada em "L"
+//Retorna se ï¿½ possivel fazer a jogada em "L"
 bool inRange(int i, int j)
 {
     return ( (i>=0) &&(i<8) && (j >=0) && (j<8) );
@@ -104,13 +105,29 @@ vector<int> caminho(int rei, int cavaleiro)
 
 int main(){
 
-    //Exemplo do cavaleiro na casa 1 e o rei na casa 2
-    vector<int> c;
-    c = caminho(2,1);
-    cout << "caminho :";
-    for(int i = 0; i< c.size() -1; i++){
-        cout << c[i] << " ";
-    }
+    std::string s;
+    int *x = new int[5];
 
+    getline(cin,s);
+
+    posicoesEntrada(s,x);
+
+    //Exemplo do cavaleiro na casa 1 e o rei na casa 2
+    for(int j = 0; j < 4; j++){
+
+      vector<int> c;
+      c = caminho(x[4],x[j]);
+
+      string s = posicaoSaida(c);
+
+      cout <<--c[0] << " "<< s << endl;
+
+      /*cout << "caminho "<<x[j]<<" :";
+
+      for(int i = 0; i< c.size() -1; i++){
+          cout << c[i] << " ";
+      }
+      cout << endl;*/
+    }
     return 0;
 }
