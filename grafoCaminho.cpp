@@ -1,7 +1,7 @@
 #include "BFS.cpp"
 #include <vector>
 #include "entradaSaida.cpp"
-
+ 
 using namespace std;
 
 //Retorna se � possivel fazer a jogada em "L"
