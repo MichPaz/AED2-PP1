@@ -1,0 +1,8 @@
+# Ignorar pdfs
+*.pdf
+
+# Ignorar arquivos .o
+*.o
+
+# Ignorar arquivos nomeados "a"
+a
