@@ -1,4 +1,5 @@
 #include <limits>
+#include <vector>
 #include "fila.cpp"
 #include "grafoListaAd.cpp"
 
@@ -84,14 +85,14 @@ vector<VertexBFS> bfs(Graph &graph, int s)
         int j = q.desenfileira();
 
         for(int i = 0; i<graph.getAdj()[j].size(); i++){
-            if(u[graph.getAdj()[j].at(i)].getCor()==0){
+            if(u[graph.getAdj()[j].at(i)->item].getCor()==0){
 
-                u[graph.getAdj()[j].at(i)].setCor(1);
-                u[graph.getAdj()[j].at(i)].setD(u[j].getD()+1);
-                u[graph.getAdj()[j].at(i)].setP(j);
+                u[graph.getAdj()[j].at(i)->item].setCor(1);
+                u[graph.getAdj()[j].at(i)->item].setD(u[j].getD()+1);
+                u[graph.getAdj()[j].at(i)->item].setP(j);
 
-                gr.insertEdge(j,graph.getAdj()[j].at(i));
-                q.enfileira(graph.getAdj()[j].at(i));
+                gr.insertEdge(j,graph.getAdj()[j].at(i)->item);
+                q.enfileira(graph.getAdj()[j].at(i)->item);
             }
         u[j].setCor(2);
         }

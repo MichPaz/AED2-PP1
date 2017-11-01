@@ -1,7 +1,7 @@
 #include "BFS.cpp"
 #include <vector>
 #include "entradaSaida.cpp"
- 
+
 using namespace std;
 
 //Retorna se � possivel fazer a jogada em "L"
@@ -68,7 +68,7 @@ Graph geraCaminhos(int posInicial){
             if(visited[movL(u).at(i)]<movL(movL(u).at(i)).size()){
                 int cont = 0;
                 for(int k=0;k<graph.getAdj()[u].size();k++){
-                    if(movL(u).at(i)==graph.getAdj()[u].at(k))
+                    if(movL(u).at(i)==graph.getAdj()[u].at(k)->item)
                         cont++;
                 }
                 if(cont==0){
@@ -94,8 +94,8 @@ vector<int> caminho(int rei, int cavaleiro)
     cam.push_back(cavaleiro);
     for(int i = 0; i<grafoBFS[cavaleiro].getD();i++){
         for(int j = 0; j < g.getAdj()[posca].size();j++){
-            if(grafoBFS[g.getAdj()[posca].at(j)].getD()<grafoBFS[posca].getD()){
-                posca = g.getAdj()[posca].at(j);
+            if(grafoBFS[g.getAdj()[posca].at(j)->item].getD()<grafoBFS[posca].getD()){
+                posca = g.getAdj()[posca].at(j)->item;
                 cam.push_back(posca);
             }
         }
