@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 #define ARRAY_SIZE(array) (sizeof((array))/sizeof((array[0])))
 
@@ -33,30 +32,3 @@ void posicoesEntrada(string s, int *posicoes)
   }
 }
 
-string processaPosicaoSaida(int n)
-{
-  string s;
-  int aux = -1;
-
-  while(n>0){
-    n -= 8;
-    aux++;
-  }
-
-  n+=8;
-
-  aux = aux + 'a';
-  char c = aux;
-
-  s = c + to_string(n);
-  return s;
-}
-
-string posicaoSaida(vector<int> v)
-{
-  string s = "";
-
-  for (int i = 1; i < v.size()-1; i++)
-    s += processaPosicaoSaida(v[i]) + " ";
-  return s;
-}

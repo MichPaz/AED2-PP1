@@ -137,6 +137,7 @@ void Graph::destroy()
 	delete adj;
 }
 
+/*
 int main(int argc, char const *argv[])
 {
 	Graph g(8);
@@ -144,4 +145,4 @@ int main(int argc, char const *argv[])
 	testaGrafo(g);
 
 	return 0;
-}
+}*/

@@ -105,29 +105,42 @@ vector<int> caminho(int rei, int cavaleiro)
 
 int main(){
 
-    std::string s;
-    int *x = new int[5];
+    int rep;
+    
+    cin >> rep;
+    cin.ignore();
+    for (int i = 0; i < rep; i++){
+        
+        std::string s;
+        vector<int> menores(4);
+        int *x = new int[5];
 
-    getline(cin,s);
+        getline(cin,s);
 
-    posicoesEntrada(s,x);
+        posicoesEntrada(s,x);
 
-    //Exemplo do cavaleiro na casa 1 e o rei na casa 2
-    for(int j = 0; j < 4; j++){
+        int menor = 99;
+        //Exemplo do cavaleiro na casa 1 e o rei na casa 2
+        for(int j = 0; j < 4; j++){
 
-      vector<int> c;
-      c = caminho(x[4],x[j]);
+            vector<int> c;
+            c = caminho(x[4],x[j]);
 
-      string s = posicaoSaida(c);
+            if(--c[0] < menor){
+                menor = c[0];
+                menores.clear();
+                menores.push_back(menor); 
+            }
+            else if (c[0] == menor){
+                menores.push_back(menor);
+            }
 
-      cout <<--c[0] << " "<< s << endl;
-
-      /*cout << "caminho "<<x[j]<<" :";
-
-      for(int i = 0; i< c.size() -1; i++){
-          cout << c[i] << " ";
-      }
-      cout << endl;*/
-    }
+        }
+    
+        for(int i = 0; i < menores.size(); i++)
+            cout << menores[i] << " ";
+        cout << endl;
+        delete x;
+    }   
     return 0;
 }
