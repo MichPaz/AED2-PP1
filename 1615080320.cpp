@@ -35,7 +35,7 @@ public:
 	list(){
 		first = new node<T>();
 		first->previous = NULL;
-		
+
 
 		last = new node<T>();
 		last->next = NULL;
@@ -66,7 +66,7 @@ void list<T>::insert(T item)
 	last->next = new node<T>();
 	last->next->previous = last;
 	last = last->next;
-	last->next = NULL;	
+	last->next = NULL;
 
 	cont++;
 
@@ -336,8 +336,8 @@ void Graph::insertEdge(Vertex u, Vertex v)
 	adj[v].insert(x);
 
 	quickSort(adj[u], 0, adj[u].size()-1);
-	quickSort(adj[v], 0, adj[v].size()-1);	
-	
+	quickSort(adj[v], 0, adj[v].size()-1);
+
 	m++;
 }
 
@@ -491,8 +491,10 @@ vector<int> movL(int p)
         }
     }
     //Movimentos em "L" possiveis
-    if(!inRange(x,y))
-        cout << "posicao invalida, erro na posicao do tabuleiro." ;
+    if(!inRange(x,y)){
+        cout << "posicao invalida, erro na posicao do tabuleiro.\n" ;
+        cout << "(x,y) = " << "(" << x << "," << y << ")\n";
+    }
 
     if(inRange(x+2,y+1))
         pos.push_back(tabuleiro[x+2][y+1]);
@@ -517,6 +519,11 @@ vector<int> movL(int p)
 
 //Retorna um grafo que possui todas as jogadas possiveis no tabuleio a partir da posicao inicial
 Graph geraCaminhos(int posInicial){
+
+    if (posInicial<0 || posInicial>64){
+        cout << "Posicao inicial invalida = " << posInicial << endl;
+    }
+
     int visited[65];
     for(int i=1;i<=64;i++){
         visited[i]=0;
@@ -527,7 +534,7 @@ Graph geraCaminhos(int posInicial){
     while(!q.vazia()){
         int u = q.desenfileira();
         for(unsigned int i = 0; i < movL(u).size();i++){
-            if(visited[movL(u).at(i)]<movL(movL(u).at(i)).size()){
+            if((unsigned)visited[movL(u).at(i)]<movL(movL(u).at(i)).size()){
                 int cont = 0;
                 for(int k=0;k<graph.getAdj()[u].size();k++){
                     if(movL(u).at(i)==graph.getAdj()[u].at(k)->item)
@@ -583,7 +590,7 @@ void posicoesEntrada(string s, int *posicoes)
   int j = 0;
 
   for(unsigned int i = 0; i <= s.length(); i++){
-    if(s[i] == ' ' || i == s.length()){
+    if(s[i] == ' ' || (unsigned) i == s.length()){
       posicoes[j] = processaPosicaoEntrada(aux);
       aux = "";
       j++;
@@ -599,11 +606,11 @@ void posicoesEntrada(string s, int *posicoes)
 int main(){
 
     int rep;
-    
+
     cin >> rep;
     cin.ignore();
     for (int i = 0; i < rep; i++){
-        
+
         std::string s;
         vector<int> menores(4);
         int *x = new int[5];
@@ -622,18 +629,18 @@ int main(){
             if(--c[0] < menor){
                 menor = c[0];
                 menores.clear();
-                menores.push_back(menor); 
+                menores.push_back(menor);
             }
             else if (c[0] == menor){
                 menores.push_back(menor);
             }
 
         }
-    
+
         for(unsigned int i = 0; i < menores.size(); i++)
             cout << menores[i] << " ";
         cout << endl;
         delete x;
-    }   
+    }
     return 0;
 }
