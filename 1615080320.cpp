@@ -526,7 +526,7 @@ Graph geraCaminhos(int posInicial){
     q.enfileira(posInicial);
     while(!q.vazia()){
         int u = q.desenfileira();
-        for(int i = 0; i < movL(u).size();i++){
+        for(unsigned int i = 0; i < movL(u).size();i++){
             if(visited[movL(u).at(i)]<movL(movL(u).at(i)).size()){
                 int cont = 0;
                 for(int k=0;k<graph.getAdj()[u].size();k++){
@@ -582,7 +582,7 @@ void posicoesEntrada(string s, int *posicoes)
   string aux = "";
   int j = 0;
 
-  for(int i = 0; i <= s.length(); i++){
+  for(unsigned int i = 0; i <= s.length(); i++){
     if(s[i] == ' ' || i == s.length()){
       posicoes[j] = processaPosicaoEntrada(aux);
       aux = "";
@@ -630,7 +630,7 @@ int main(){
 
         }
     
-        for(int i = 0; i < menores.size(); i++)
+        for(unsigned int i = 0; i < menores.size(); i++)
             cout << menores[i] << " ";
         cout << endl;
         delete x;
